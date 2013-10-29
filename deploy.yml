@@ -23,7 +23,7 @@
            virtualenv_site_packages=yes
 
     - name: create ldap-password
-      copy: src=non-git-files/ldap-password
+      copy: src=../non-git-files/ldap-password
             dest=${project_root}/application/django_project/ldap-password
       when: ${project_uses_ldap}
 
