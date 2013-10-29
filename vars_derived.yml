@@ -2,8 +2,9 @@
 # should not need customizing
 project_root: /srv/${project_name}
 project_virtual_env: ${project_root}/venv
-project_user: ${project_name}
 project_db_user: ${project_name}
 project_db_name: ${project_name}_db
 project_server_name: ${inventory_hostname}
-
+project_user: ${project_name}
+# may need adjustment on non debian/ubuntu machines
+project_group: www-data
