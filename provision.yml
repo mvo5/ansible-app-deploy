@@ -27,7 +27,7 @@
     with_items:
       - ${project_root}
       - ${project_root}/application
-      - ${project_root}/django_project
+      - ${project_root}/application/django_project
       - ${project_root}/public_html
 
   # copy ssl keys
