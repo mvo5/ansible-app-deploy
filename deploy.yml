@@ -12,6 +12,11 @@
            version=${project_git_version}
       notify: reload apache2
 
+    - name: create db-password
+      copy: src=../non-git-files/${inventory_hostname}.db-password
+            dest=${project_root}/application/django_project/db-password
+      tags: db
+
     - name: create static data symlink
       file: state=link 
             src=${project_root}/application/${project_name}/static/ 
