@@ -19,13 +19,10 @@
     with_items: ${apt_packages}
 
   # app setup
-  - name: set permissions for home dir
-    file: group=${project_group} owner=${project_user} mode=750 state=directory
-          path=${project_root}
   - name: create app user
     user: name=${project_user} home=${project_root}
   - name: create application dir
-    file: group=${project_group} owner=${project_user} mode=755 state=directory
+    file: group=${project_group} owner=${project_user} mode=750 state=directory
           path=${item}
     with_items:
       - ${project_root}
