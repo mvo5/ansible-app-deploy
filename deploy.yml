@@ -12,9 +12,16 @@
            version=${project_git_version}
       notify: reload apache2
 
+    # only create db password if its not there already
+    - name: check if db-password exists
+      shell: test -e ${project_root}/application/django_project/db-password
+      register: result
+      ignore_errors: True
+      tags: db
     - name: create db-password
       copy: src=../non-git-files/${inventory_hostname}.db-password
             dest=${project_root}/application/django_project/db-password
+      when: result|failed
       tags: db
 
     - name: create static data symlink
