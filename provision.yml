@@ -32,7 +32,7 @@
 
   # copy ssl keys
   - name: copy ssl chain
-    copy: src="non-git-files/${project_server_fqdn}/${project_ssl_cert_chain}"
+    copy: src="../non-git-files/${project_server_fqdn}/${project_ssl_cert_chain}"
           dest="/etc/ssl/"
     tags: ssl
     when: project_uses_ssl
