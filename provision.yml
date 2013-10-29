@@ -21,7 +21,7 @@
   # app setup
   - name: set permissions for home dir
     file: group=${project_group} owner=${project_user} mode=750 state=directory
-          home=${project_root}
+          path=${project_root}
   - name: create app user
     user: name=${project_user} home=${project_root}
   - name: create application dir
