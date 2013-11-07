@@ -78,6 +78,12 @@
       when: ${project_uses_south}
       tags: db
 
+    - name: Setup cron daily jobs
+      cron: name="${item.name}" job="${item.job}" hour="${item.hour}" minute="5
+      with_items:
+        $project_cron_daily_jobs
+      tags: cron
+
     - name: Update i18n
       shell: chdir=${project_root}/application/${project_name}
              DJANGO_SETTINGS_MODULE=django_project.settings_production
