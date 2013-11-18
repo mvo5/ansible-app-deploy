@@ -83,6 +83,7 @@
       with_items:
         $project_cron_daily_jobs
       tags: cron
+      when: project_cron_daily_jobs is defined
 
     - name: Update i18n
       shell: chdir=${project_root}/application/${project_name}
