@@ -34,6 +34,12 @@
            virtualenv=${project_virtual_env} 
            virtualenv_site_packages=yes
 
+    - name: Upgrade virtualenv dev dependencies
+      pip: requirements=${project_root}/application/requirements_dev.txt
+           virtualenv=${project_virtual_env} 
+           virtualenv_site_packages=yes
+      ignore_errors: True
+
     - name: create ldap-password
       copy: src=../non-git-files/ldap-password
             dest=${project_root}/application/django_project/ldap-password
