@@ -85,7 +85,7 @@
       tags: db
 
     - name: Setup cron daily jobs
-      cron: name="${item.name}" job="${item.job}" hour="${item.hour}" minute="5
+      cron: name="${item.name}" job="${item.job}" hour="${item.hour}" minute="5"
       with_items:
         $project_cron_daily_jobs
       tags: cron
