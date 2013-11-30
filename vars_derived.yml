@@ -1,10 +1,15 @@
 
 # should not need customizing
-project_root: /srv/${project_name}
-project_virtual_env: ${project_root}/venv
-project_db_user: ${project_name}
-project_db_name: ${project_name}_db
-project_server_name: ${inventory_hostname}
-project_user: ${project_name}
+project_root: "/srv/{{ project_name }}"
+project_virtual_env: "{{ project_root }}/venv"
+project_db_user: "{{ project_name }}"
+project_db_name: "{{ project_name }}_db"
+project_db_password_file: "../non-git-files/{{ inventory_hostname }}.db-password"
+project_server_name: "{{ inventory_hostname }}"
+project_user: "{{ project_name }}"
 # may need adjustment on non debian/ubuntu machines
 project_group: www-data
+project_application_dirs:
+  - "{{ project_root }}"
+  - "{{ project_root }}/application"
+  - "{{ project_root }}/public_html"
