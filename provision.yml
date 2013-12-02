@@ -8,16 +8,16 @@
   tasks:
   # packages
   - name: Install python-apt (manually) as the "apt" ansible module needs it
-    shell: apt-get install -y python-apt python-software-properties
+    shell: apt-get update -y && apt-get install -y python-apt python-software-properties
   # node (for bower)
   - name: add nodejs PPA
     apt_repository: repo=ppa:chris-lea/node.js
   - name: apt update
-    apt: update_cache=yes
+    apt: update_cache=yes cache_valid_time=900
   - name: Install apt packages
-    apt: pkg={{ item }}  state=installed update-cache=yes
-    with_items: apt_packages
-
+    apt: pkg=${item} state=installed update-cache=yes cache_valid_time=900
+    with_items: ${apt_packages}
+    
   # app setup
   - name: create app user
     user: name={{ project_user }} home={{ project_root }}
