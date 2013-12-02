@@ -1,10 +1,23 @@
 <VirtualHost *:80>
       ServerAdmin {{ project_admin_mail }}
-      ServerName {{ project_name }}.uni-trier.de
+      ServerName {{ project_server_fqdn }}
       ServerAlias {{ project_name }}
 
       {% if project_uses_ssl %}
       RedirectMatch ^/$ https://{{ project_server_fqdn }}
+      {% else %}
+      DocumentRoot {{ project_root }}/public_html
+      <Directory {{ project_root }}/application>
+          Options -Indexes FollowSymLinks -Multiviews
+          AllowOverride None
+          Order deny,allow
+      </Directory>
+      
+      WSGIDaemonProcess {{ project_name }} user={{ project_user }} python-path={{ project_root }}/application/:{{ project_virtual_env }}/lib/python2.7/site-packages
+      WSGIProcessGroup {{ project_name }}
+      WSGIScriptAlias / {{ project_root }}/application/django_project/wsgi.py
+
+      Alias /static {{ project_root }}/public_html/static
       {% endif %}
 </VirtualHost>
 
