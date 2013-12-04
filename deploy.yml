@@ -1,7 +1,7 @@
 - hosts: all
   vars_files:
-    - ../ansible_vars.yml
     - vars_derived.yml
+    - ../ansible_vars.yml
   sudo: yes
   sudo_user: "{{ project_user }}"
 
@@ -16,8 +16,8 @@
     # update settings for staging if needed
     - name: update settings to staging if needed
       shell: if test -e {{ project_root }}/application/django_project/settings_staging.py; then mv {{ project_root }}/application/django_project/settings_staging.py  {{ project_root }}/application/django_project/settings_production.py; fi
-      when: inventory_hostname in groups.staging
-
+      when: use_staging_config
+      
     # only create db password if its not there already
     - name: check if db-password exists
       shell: test -e {{ project_root }}/application/django_project/db-password
@@ -36,12 +36,12 @@
             dest={{ project_root }}/public_html/static
 
     - name: Upgrade virtualenv
-      pip: requirements={{ project_root }}/application/requirements.txt
+      pip: requirements={{ requirements }}
            virtualenv={{ project_virtual_env }} 
            virtualenv_site_packages=yes
 
     - name: Upgrade virtualenv dev dependencies
-      pip: requirements={{ project_root }}/application/requirements_dev.txt
+      pip: requirements={{ requirements_dev }}
            virtualenv={{ project_virtual_env }} 
            virtualenv_site_packages=yes
       ignore_errors: True
