@@ -1,9 +1,9 @@
 - hosts: all
   sudo: true
   vars_files:
-    - ../ansible_vars.yml 
     - vars_pkgs.yml 
     - vars_derived.yml
+    - ../ansible_vars.yml 
 
   tasks:
   # packages

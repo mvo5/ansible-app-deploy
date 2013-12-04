@@ -13,3 +13,6 @@ project_application_dirs:
   - "{{ project_root }}"
   - "{{ project_root }}/application"
   - "{{ project_root }}/public_html"
+
+requirements: "{{ project_root }}/application/requirements.txt"
+requirements_dev: "{{ project_root }}/application/requirements_dev.txt"
