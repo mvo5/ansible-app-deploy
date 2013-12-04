@@ -16,7 +16,7 @@
     # update settings for staging if needed
     - name: update settings to staging if needed
       shell: if test -e {{ project_root }}/application/django_project/settings_staging.py; then mv {{ project_root }}/application/django_project/settings_staging.py  {{ project_root }}/application/django_project/settings_production.py; fi
-      when: use_staging_config
+      when: groups.staging is defined and inventory_hostname in groups.staging
       
     # only create db password if its not there already
     - name: check if db-password exists

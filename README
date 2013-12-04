@@ -18,6 +18,11 @@ $ ansible-playbook provision.yml --limit staging
 $ ansible-playbook deploy.yml --limit staging
 ```
 
+Staging systems
+---------------
+
+If there is a "django_project/settings_staging.py" and the server is in the staging group the script will copy this on deploy to django_project/settings_production.py 
+
 
 Create a django admin user without a browser:
 ---------------------------------------------

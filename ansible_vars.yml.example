@@ -12,6 +12,5 @@ project_ssl_cert_chain: some-ch-chain.pem
 project_server_fqdn: ${inventory_hostname}.example.com
 
 # optional
-#use_staging_config: False
 #requirements: "{{ project_root }}/application/requirements.txt"
 #requirements_dev: "{{ project_root }}/application/requirements_dev.txt"
