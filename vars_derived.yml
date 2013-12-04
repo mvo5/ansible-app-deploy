@@ -14,5 +14,6 @@ project_application_dirs:
   - "{{ project_root }}/application"
   - "{{ project_root }}/public_html"
 
+use_staging_config: False
 requirements: "{{ project_root }}/application/requirements.txt"
 requirements_dev: "{{ project_root }}/application/requirements_dev.txt"
