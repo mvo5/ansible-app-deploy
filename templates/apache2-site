@@ -1,7 +1,7 @@
 <VirtualHost *:80>
       ServerAdmin {{ project_admin_mail }}
       ServerName {{ project_server_fqdn }}
-      ServerAlias {{ project_name }}
+      ServerAlias {{ project_server_name }}
 
       {% if project_uses_ssl %}
       RedirectMatch ^/$ https://{{ project_server_fqdn }}
